@@ -1,0 +1,340 @@
+--========================================================
+-- 🔴 NANAHHB BLOOD RED | COMPACT MENU
+-- Dùng trong project Roblox Studio của bạn
+--========================================================
+
+local RED       = Color3.fromRGB(255, 25, 50)
+local RED_DARK  = Color3.fromRGB(105, 8, 22)
+local BG        = Color3.fromRGB(15, 12, 17)
+local PANEL     = Color3.fromRGB(29, 20, 27)
+local TEXT      = Color3.fromRGB(255, 240, 243)
+local MUTED     = Color3.fromRGB(190, 150, 160)
+
+-- Nút nổi
+local toggle = Instance.new("TextButton")
+toggle.Name = "NanahhbToggle"
+toggle.Size = UDim2.fromOffset(48, 48)
+toggle.Position = UDim2.fromOffset(14, 15)
+toggle.BackgroundColor3 = RED_DARK
+toggle.Text = "N"
+toggle.TextColor3 = TEXT
+toggle.TextSize = 23
+toggle.Font = Enum.Font.GothamBlack
+toggle.AutoButtonColor = false
+toggle.Parent = gui
+
+Instance.new("UICorner", toggle).CornerRadius =
+UDim.new(0, 15)
+
+local toggleStroke = Instance.new("UIStroke")
+toggleStroke.Color = RED
+toggleStroke.Thickness = 2
+toggleStroke.Parent = toggle
+
+-- Menu chính
+local menu = Instance.new("Frame")
+menu.Name = "NanahhbBloodRedMenu"
+menu.Size = UDim2.fromOffset(330, 310)
+menu.Position = UDim2.new(0.5, -165, 0.5, -155)
+menu.BackgroundColor3 = BG
+menu.BorderSizePixel = 0
+menu.Parent = gui
+
+Instance.new("UICorner", menu).CornerRadius =
+UDim.new(0, 16)
+
+local menuStroke = Instance.new("UIStroke")
+menuStroke.Color = RED
+menuStroke.Thickness = 1.8
+menuStroke.Parent = menu
+
+-- Thanh tiêu đề
+local header = Instance.new("Frame")
+header.Size = UDim2.new(1, 0, 0, 62)
+header.BackgroundColor3 = RED_DARK
+header.BorderSizePixel = 0
+header.Parent = menu
+
+Instance.new("UICorner", header).CornerRadius =
+UDim.new(0, 15)
+
+local headerCover = Instance.new("Frame")
+headerCover.Size = UDim2.new(1, 0, 0, 16)
+headerCover.Position = UDim2.new(0, 0, 1, -16)
+headerCover.BackgroundColor3 = RED_DARK
+headerCover.BorderSizePixel = 0
+headerCover.Parent = header
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -24, 0, 30)
+title.Position = UDim2.fromOffset(14, 7)
+title.BackgroundTransparency = 1
+title.Text = "NANAHHB"
+title.TextColor3 = TEXT
+title.TextSize = 21
+title.Font = Enum.Font.GothamBlack
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = header
+
+local subtitle = Instance.new("TextLabel")
+subtitle.Size = UDim2.new(1, -24, 0, 17)
+subtitle.Position = UDim2.fromOffset(15, 36)
+subtitle.BackgroundTransparency = 1
+subtitle.Text = "B L O O D   R E D   •   FLIGHT SYSTEM"
+subtitle.TextColor3 = Color3.fromRGB(255, 175, 185)
+subtitle.TextSize = 9
+subtitle.Font = Enum.Font.GothamBold
+subtitle.TextXAlignment = Enum.TextXAlignment.Left
+subtitle.Parent = header
+
+-- Thanh trạng thái
+local status = Instance.new("TextLabel")
+status.Name = "StatusLabel"
+status.Size = UDim2.new(1, -24, 0, 25)
+status.Position = UDim2.fromOffset(12, 70)
+status.BackgroundColor3 = PANEL
+status.Text = "●  SYSTEM READY"
+status.TextColor3 = RED
+status.TextSize = 11
+status.Font = Enum.Font.GothamBold
+status.Parent = menu
+
+Instance.new("UICorner", status).CornerRadius =
+UDim.new(0, 8)
+
+-- Các nút chức năng
+local function createButton(text, y, height)
+local b = Instance.new("TextButton")
+b.Size = UDim2.new(1, -24, 0, height or 36)
+b.Position = UDim2.fromOffset(12, y)
+b.BackgroundColor3 = PANEL
+b.TextColor3 = TEXT
+b.Text = text
+b.TextSize = 13
+b.Font = Enum.Font.GothamBold
+b.AutoButtonColor = false
+b.Parent = menu
+
+Instance.new("UICorner", b).CornerRadius =  
+    UDim.new(0, 9)  
+
+local stroke = Instance.new("UIStroke")  
+stroke.Color = RED_DARK  
+stroke.Thickness = 1  
+stroke.Parent = b  
+
+b.MouseEnter:Connect(function()  
+    b.BackgroundColor3 = RED_DARK  
+end)  
+
+b.MouseLeave:Connect(function()  
+    b.BackgroundColor3 = PANEL  
+end)  
+
+return b
+
+end
+
+local bombButton = createButton("💣  CHỌN BOM", 103)
+local droneButton = createButton("🚁  DRONE: TẮT", 145)
+local cameraButton = createButton("🎥  GÓC NHÌN: 3D", 187)
+
+local speedRow = Instance.new("Frame")
+speedRow.Size = UDim2.new(1, -24, 0, 38)
+speedRow.Position = UDim2.fromOffset(12, 229)
+speedRow.BackgroundTransparency = 1
+speedRow.Parent = menu
+
+local function createSpeedButton(text, x, width)
+local b = Instance.new("TextButton")
+b.Size = UDim2.new(0, width, 1, 0)
+b.Position = UDim2.fromOffset(x, 0)
+b.BackgroundColor3 = RED_DARK
+b.TextColor3 = TEXT
+b.Text = text
+b.TextSize = 17
+b.Font = Enum.Font.GothamBlack
+b.AutoButtonColor = false
+b.Parent = speedRow
+
+Instance.new("UICorner", b).CornerRadius =  
+    UDim.new(0, 9)  
+
+return b
+
+end
+
+local speedDown = createSpeedButton("−", 0, 42)
+
+local speedLabel = Instance.new("TextButton")
+speedLabel.Size = UDim2.new(1, -96, 1, 0)
+speedLabel.Position = UDim2.fromOffset(48, 0)
+speedLabel.BackgroundColor3 = PANEL
+speedLabel.TextColor3 = TEXT
+speedLabel.Text = "SPEED " .. tostring(SPEED)
+speedLabel.TextSize = 13
+speedLabel.Font = Enum.Font.GothamBold
+speedLabel.AutoButtonColor = false
+speedLabel.Parent = speedRow
+
+Instance.new("UICorner", speedLabel).CornerRadius =
+UDim.new(0, 9)
+
+local speedUp = createSpeedButton("+", 1, 42)
+speedUp.AnchorPoint = Vector2.new(1, 0)
+speedUp.Position = UDim2.new(1, 0, 0, 0)
+
+local footer = Instance.new("TextLabel")
+footer.Size = UDim2.new(1, -24, 0, 20)
+footer.Position = UDim2.fromOffset(12, 272)
+footer.BackgroundTransparency = 1
+footer.Text = "NANAHHB  /  FLIGHT TELEMETRY"
+footer.TextColor3 = MUTED
+footer.TextSize = 9
+footer.Font = Enum.Font.GothamBold
+footer.Parent = menu
+
+-- Kéo thả menu và nút nổi trên màn hình cảm ứng
+local function makeDraggable(object)
+local dragging = false
+local dragStart
+local startPosition
+local dragInput
+
+object.InputBegan:Connect(function(input)  
+    if input.UserInputType == Enum.UserInputType.Touch  
+        or input.UserInputType == Enum.UserInputType.MouseButton1 then  
+
+        dragging = true  
+        dragStart = input.Position  
+        startPosition = object.Position  
+        dragInput = input  
+
+        input.Changed:Connect(function()  
+            if input.UserInputState == Enum.UserInputState.End then  
+                dragging = false  
+                dragInput = nil  
+            end  
+        end)  
+    end  
+end)  
+
+UIS.InputChanged:Connect(function(input)  
+    if not dragging then  
+        return  
+    end  
+
+    if input.UserInputType == Enum.UserInputType.Touch  
+        or input.UserInputType == Enum.UserInputType.MouseMovement then  
+
+        local delta = input.Position - dragStart  
+
+        object.Position = UDim2.new(  
+            startPosition.X.Scale,  
+            startPosition.X.Offset + delta.X,  
+            startPosition.Y.Scale,  
+            startPosition.Y.Offset + delta.Y  
+        )  
+    end  
+end)
+
+end
+
+makeDraggable(menu)
+makeDraggable(toggle)
+
+-- Nút nổi dùng để ẩn/hiện menu
+toggle.Activated:Connect(function()
+menu.Visible = not menu.Visible
+end)
+--====================================================
+-- HUD UPDATE
+--====================================================
+rollText.Text =
+"[ ROLL: +00° | ACRO ]"
+
+pitchText.Text =  
+	string.format(  
+		"PITCH: %+03d° | CLIMB: %03d S/S",  
+		math.floor(pitchDegrees),  
+		math.floor(climb)  
+	)  
+
+altText.Text =  
+	string.format(  
+		"ALT: %04d studs | AIR: %.1fs",  
+		math.floor(altitude),  
+		airTime  
+	)  
+
+maxText.Text =  
+	string.format(  
+		"MAX: %04d studs | SPS: %03d S/S",  
+		math.floor(maxAltitude),  
+		math.floor(currentSpeed)  
+	)  
+
+thrText.Text =  
+	string.format(  
+		"THR: %03d%% | DIR: %03d°",  
+		math.floor(throttle),  
+		math.floor(heading)  
+	)  
+
+tempText.Text =  
+	"TEMP: 15°C | THERMAL: OFF"  
+
+--====================================================  
+-- PITCH BAR  
+--====================================================  
+
+local pitchPercent =  
+	math.clamp(  
+		(pitchDegrees + 85) / 170,  
+		0,  
+		1  
+	)  
+
+pitchBarFill.Size =  
+	UDim2.new(  
+		pitchPercent,  
+		0,  
+		1,  
+		0  
+	)  
+
+--====================================================  
+-- SPEED BAR  
+--====================================================  
+
+local speedPercent =  
+	math.clamp(  
+		SPEED / MAX_SPEED,  
+		0,  
+		1  
+	)  
+
+speedFill.Size =  
+	UDim2.new(  
+		1,  
+		0,  
+		speedPercent,  
+		0  
+	)
+
+end)
+
+--========================================================
+-- RESPAWN
+--========================================================
+
+LP.CharacterAdded:Connect(function()
+
+stopDrone()  
+
+task.wait(.5)  
+
+Camera.CameraType =  
+	Enum.CameraType.Custom
+
+end)
